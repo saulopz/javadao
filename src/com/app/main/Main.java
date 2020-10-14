@@ -2,7 +2,7 @@ package src.com.app.main;
 
 import java.util.Scanner;
 
-import src.com.app.database.*;
+import src.com.app.database.DatabaseConnection;
 import src.com.app.model.*;
 import src.com.app.dao.*;
 

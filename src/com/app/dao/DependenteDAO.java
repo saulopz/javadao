@@ -4,18 +4,19 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
-import src.com.app.database.*;
-import src.com.app.model.*;
+import src.com.app.database.DatabaseConnection;
+import src.com.app.model.Dependente;
 
 public class DependenteDAO {
 	private int Position;
-	private Vector<Dependente> dependenteList;
+	private List<Dependente> dependenteList;
 
 	public DependenteDAO() {
 		Position = 0;
-		dependenteList = new Vector<Dependente>();
+		dependenteList = new ArrayList<Dependente>();
 		create();
 	}
 
@@ -26,7 +27,7 @@ public class DependenteDAO {
 			String query =
 				"create table if not exists dependente ( " +
 				"idfuncionario integer references funcionario, " +
-				"iddependente serial, " +
+				"iddependente integer, " +
 				"nome varchar(50), " +
 				"idade integer, " +
 				"primary key (iddependente));";
@@ -36,7 +37,7 @@ public class DependenteDAO {
 		}
 	}
 
-	public void load(int func) {
+	public  void load(int func) {
 		try {
 			Connection conn = DatabaseConnection.getConnection();
 			Statement stmt = conn.createStatement();

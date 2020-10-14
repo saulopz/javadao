@@ -1,0 +1,6 @@
+./src/com/app/main/Main.java
+./src/com/app/model/Funcionario.java
+./src/com/app/model/Dependente.java
+./src/com/app/database/DatabaseConnection.java
+./src/com/app/dao/FuncionarioDAO.java
+./src/com/app/dao/DependenteDAO.java

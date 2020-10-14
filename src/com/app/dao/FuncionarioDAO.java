@@ -4,18 +4,19 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
-import src.com.app.database.*;
-import src.com.app.model.*;
+import src.com.app.database.DatabaseConnection;
+import src.com.app.model.Funcionario;
 
 public class FuncionarioDAO {
 	private int Position;
-	private Vector<Funcionario> funcionarioList;
+	private List<Funcionario> funcionarioList;
 
 	public FuncionarioDAO() {
 		Position = 0;
-		funcionarioList = new Vector<Funcionario>();
+		funcionarioList = new ArrayList<Funcionario>();
 		create();
 	}
 
@@ -25,7 +26,7 @@ public class FuncionarioDAO {
 			Statement stmt = conn.createStatement();
 			String query =
 				"create table if not exists funcionario ( " +
-				"idfuncionario serial, " +
+				"idfuncionario integer, " +
 				"nome varchar(50), " +
 				"salario real, " +
 				"primary key (idfuncionario))";
@@ -80,8 +81,10 @@ public class FuncionarioDAO {
 			Connection conn = DatabaseConnection.getConnection();
 			Statement stmt = conn.createStatement();
 
-			String query = "update funcionario set " + "nome = '" + func.getNome() + "', " + "salario = "
-					+ func.getSalario() + " " + "where idfuncionario = " + func.getIdFuncionario();
+			String query = "update funcionario set " +
+						"nome = '" + func.getNome() + "', " +
+						"salario = " + func.getSalario() + " " +
+						"where idfuncionario = " + func.getIdFuncionario();
 			System.out.println("QUERY: " + query);
 			stmt.executeUpdate(query);
 			stmt.close();
